@@ -1,7 +1,53 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
+  <br />
+  <h1 style="color:rgb(0, 0, 0)">
+    {{ title }}!
   </h1>
+  <div class="container">
+    <form [formGroup]="YelpINeedSomebody" className="form">
+      <hr>
+      <select placeholder="Select" formControlName="price">
+        <option value=1>$</option>
+        <option value=2>$$</option>
+        <option value=3>$$$</option>
+        <option value=4>$$$$</option>
+      </select>
+      <input placeholder="city" formControlName="city">
+      <button type='submit' (click)='getData()'>Submit</button>
+    </form>
+  </div>
+  <br /> <br />
+  <div *ngIf='restaurants'>
+    <div class="card">
+      <div class="cardContainer">
+        <h1>{{ restaurants.name }}</h1>
+        <p><i> {{ restaurants.location.address1 }} </i></p>
+        <img class="image" src="{{ restaurants.image_url }}" />
+        <p>Phone Number: {{ restaurants.phone }}</p>
+        <p>Order Types: {{ delivery }} </p>
+        <h5>Price: {{restaurants.price}} </h5>
+        <p><img src="../assets/yelp_stars/web_and_ios/extra_large/extra_large_0.png" *ngIf="restaurants.rating === 0">
+        </p>
+        <p><img src="../assets/yelp_stars/web_and_ios/extra_large/extra_large_1.png" *ngIf="restaurants.rating === 1">
+        </p>
+        <p><img src="../assets/yelp_stars/web_and_ios/extra_large/extra_large_1_half.png" *ngIf="restaurants.rating === 1.5">
+        </p>
+        <p><img src="../assets/yelp_stars/web_and_ios/extra_large/extra_large_2.png" *ngIf="restaurants.rating === 2">
+        </p>
+        <p><img src="../assets/yelp_stars/web_and_ios/extra_large/extra_large_2_half.png" *ngIf="restaurants.rating === 2.5">
+        </p>
+        <p><img src="../assets/yelp_stars/web_and_ios/extra_large/extra_large_3.png" *ngIf="restaurants.rating === 3">
+        </p>
+        <p><img src="../assets/yelp_stars/web_and_ios/extra_large/extra_large_3_half.png" *ngIf="restaurants.rating === 3.5">
+        </p>
+        <p><img src="../assets/yelp_stars/web_and_ios/extra_large/extra_large_4.png" *ngIf="restaurants.rating === 4">
+        </p>
+        <p><img src="../assets/yelp_stars/web_and_ios/extra_large/extra_large_4_half.png" *ngIf="restaurants.rating === 4.5">
+        </p>
+        <p><img src="../assets/yelp_stars/web_and_ios/extra_large/extra_large_5.png" *ngIf="restaurants.rating === 5">
+        </p>
+        <br />
+      </div>
+    </div>
+  </div>
 </div>
-

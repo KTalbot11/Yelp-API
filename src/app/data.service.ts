@@ -1,11 +1,26 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../environments/environment.prod';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+const APIKEY = environment.APIKEY
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Authorization': APIKEY,
+    'Content-Type': 'application/json'
+  })
+}
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class DataService {
- public YelpKey = "PQVN-lodhJx11sOJTd5xqRjfHGfje5pi-R7OfXEIgHBrFOcqYhkg6_vKBUV5RS8IuB8g3DkphwcaJ93XgOD04kcQM3slpIlDkD1U6_lj3EMlT6__Y06PrHNKPegbXHYx"
- public APIurl = "https://api.yelp.com/v3"
-  constructor() { }
+
+  constructor(public _http:HttpClient) { }
+
+  getData(city, price): Observable<any> {
+    return this._http.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location=${city}&price=${price}`, httpOptions)
+  }
+
 }
